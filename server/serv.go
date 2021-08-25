@@ -1,6 +1,10 @@
 package server
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"golang-challenge/routes"
+	"log"
+)
 
 type Server struct {
 	port string
@@ -9,11 +13,14 @@ type Server struct {
 
 func NewServer() Server{
 	return Server{
-		port: 	"5000",
+		port: 	"3000",
 		server: gin.Default(),
 	}
 }
 
 func (s *Server) Run(){
+	router := routes.ConfigRoutes(s.server)
 
+	log.Print("server is running at port: ", s.port)
+	log.Fatal(router.Run(":" + s.port))
 }

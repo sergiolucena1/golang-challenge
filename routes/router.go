@@ -10,7 +10,7 @@ func ConfigRoutes(router *gin.Engine) *gin.Engine{
 	{
 		products := main.Group("products")
 		{
-			products.GET("/", controllers.ShowProduct)
+			products.GET("/:id", controllers.ShowProduct)
 		}
 	}
 	return router
